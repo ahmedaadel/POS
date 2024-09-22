@@ -1,4 +1,4 @@
-package com.POS.POS.JPARepo;
+package com.POS.POS.repository;
 
 import com.POS.POS.entity.ContactInfo;
 import org.springframework.data.jpa.repository.JpaRepository;

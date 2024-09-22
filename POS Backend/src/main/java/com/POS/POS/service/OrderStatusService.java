@@ -1,44 +1,56 @@
-package com.POS.POS.services;
-import com.POS.POS.repository.OrderStatusRepository;
+package com.POS.POS.service;
+
 import com.POS.POS.entity.OrderStatus;
+import com.POS.POS.repository.OrderStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrderStatusService {
-
     @Autowired
     private OrderStatusRepository orderStatusRepository;
 
-    // Create a new OrderStatus
-    public OrderStatus createOrderStatus(OrderStatus orderStatus) {
+    @Transactional
+    public OrderStatus save(OrderStatus orderStatus) {
         return orderStatusRepository.save(orderStatus);
     }
 
-    // Get all OrderStatuses
-    public List<OrderStatus> getAllOrderStatuses() {
+    @Transactional
+    public List<OrderStatus> saveAll(List<OrderStatus> orderStatuses) {
+        return orderStatusRepository.saveAll(orderStatuses);
+    }
+
+    public List<OrderStatus> findAll() {
         return orderStatusRepository.findAll();
     }
 
-    // Get an OrderStatus by ID
-    public Optional<OrderStatus> getOrderStatusById(Integer id) {
-        return orderStatusRepository.findById(id);
+    public Page<OrderStatus> findAll(Pageable pageable) {
+        return orderStatusRepository.findAll(pageable);
     }
 
-    // Update an OrderStatus
-    public OrderStatus updateOrderStatus(Integer id, OrderStatus orderStatus) {
-        if (orderStatusRepository.existsById(id)) {
-            orderStatus.setId(id);
-            return orderStatusRepository.save(orderStatus);
+    public OrderStatus findById(Integer id) {
+        return orderStatusRepository.findById(id).orElse(null);
+    }
+
+    @Transactional
+    public OrderStatus update(Integer id, OrderStatus orderStatus) {
+        if (!orderStatusRepository.existsById(id)) {
+            throw new RuntimeException("OrderStatus not found");
         }
-        return null;
+        orderStatus.setId(id);
+        return orderStatusRepository.save(orderStatus);
     }
 
-    // Delete an OrderStatus
-    public void deleteOrderStatus(Integer id) {
+    @Transactional
+    public void delete(Integer id) {
+        if (!orderStatusRepository.existsById(id)) {
+            throw new RuntimeException("OrderStatus not found");
+        }
         orderStatusRepository.deleteById(id);
     }
 }

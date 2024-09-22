@@ -1,44 +1,51 @@
-package com.POS.POS.services;
-import com.POS.POS.repository.ContactInfoRepository;
-import com.POS.POS.entity.ContactInfo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+package com.POS.POS.service;
 
+import com.POS.POS.entity.ContactInfo;
+import com.POS.POS.repository.ContactInfoRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ContactInfoService {
-
     @Autowired
     private ContactInfoRepository contactInfoRepository;
 
-    // Create a new ContactInfo
-    public ContactInfo createContactInfo(ContactInfo contactInfo) {
+    @Transactional
+    public ContactInfo save(ContactInfo contactInfo) {
         return contactInfoRepository.save(contactInfo);
     }
 
-    // Get all ContactInfos
-    public List<ContactInfo> getAllContactInfos() {
-        return contactInfoRepository.findAll();
+    @Transactional
+    public List<ContactInfo> saveAll(List<ContactInfo> contactInfos) {
+        return contactInfoRepository.saveAll(contactInfos);
     }
 
-    // Get a ContactInfo by ID
-    public Optional<ContactInfo> getContactInfoById(Integer id) {
+    public Optional<ContactInfo> findById(int id) {
         return contactInfoRepository.findById(id);
     }
 
-    // Update a ContactInfo
-    public ContactInfo updateContactInfo(Integer id, ContactInfo contactInfo) {
-        if (contactInfoRepository.existsById(id)) {
-            contactInfo.setId(id);
-            return contactInfoRepository.save(contactInfo);
-        }
-        return null;
+    public List<ContactInfo> findAll() {
+        return contactInfoRepository.findAll();
     }
 
-    // Delete a ContactInfo
-    public void deleteContactInfo(Integer id) {
+    public Page<ContactInfo> findAllWithPaging(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return contactInfoRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public void deleteById(int id) {
         contactInfoRepository.deleteById(id);
+    }
+
+    @Transactional
+    public ContactInfo update(ContactInfo contactInfo) {
+        return contactInfoRepository.save(contactInfo);
     }
 }

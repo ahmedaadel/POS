@@ -1,45 +1,57 @@
-package com.POS.POS.services;
+package com.POS.POS.service;
 
-import com.POS.POS.repository.CreditTypeRepository;
 import com.POS.POS.entity.CreditType;
+import com.POS.POS.repository.CreditTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CreditTypeService {
-
     @Autowired
     private CreditTypeRepository creditTypeRepository;
 
-    // Create a new CreditType
-    public CreditType createCreditType(CreditType creditType) {
+    @Transactional
+    public CreditType save(CreditType creditType) {
         return creditTypeRepository.save(creditType);
     }
 
-    // Get all CreditTypes
-    public List<CreditType> getAllCreditTypes() {
+    @Transactional
+    public List<CreditType> saveAll(List<CreditType> creditTypes) {
+        return creditTypeRepository.saveAll(creditTypes);
+    }
+
+    public List<CreditType> findAll() {
         return creditTypeRepository.findAll();
     }
 
-    // Get a CreditType by ID
-    public Optional<CreditType> getCreditTypeById(Integer id) {
-        return creditTypeRepository.findById(id);
+    public Page<CreditType> findAll(Pageable pageable) {
+        return creditTypeRepository.findAll(pageable);
     }
 
-    // Update a CreditType
-    public CreditType updateCreditType(Integer id, CreditType creditType) {
-        if (creditTypeRepository.existsById(id)) {
-            creditType.setId(id);
-            return creditTypeRepository.save(creditType);
+    public CreditType findById(Integer id) {
+        return creditTypeRepository.findById(id).orElse(null);
+    }
+
+    @Transactional
+    public CreditType update(Integer id, CreditType creditType) {
+        if (!creditTypeRepository.existsById(id)) {
+            throw new RuntimeException("CreditType not found");
         }
-        return null;
+        creditType.setId(id);
+        return creditTypeRepository.save(creditType);
     }
 
-    // Delete a CreditType
-    public void deleteCreditType(Integer id) {
+    @Transactional
+    public void delete(Integer id) {
+        if (!creditTypeRepository.existsById(id)) {
+            throw new RuntimeException("CreditType not found");
+        }
         creditTypeRepository.deleteById(id);
     }
 }

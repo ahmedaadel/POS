@@ -1,46 +1,51 @@
-package com.POS.POS.services;
+package com.POS.POS.service;
 
-
-import com.POS.POS.repository.IndustryRepository;
 import com.POS.POS.entity.Industry;
+import com.POS.POS.repository.IndustryRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class IndustryService {
-
     @Autowired
     private IndustryRepository industryRepository;
 
-    // Create a new Industry
-    public Industry createIndustry(Industry industry) {
+    @Transactional
+    public Industry save(Industry industry) {
         return industryRepository.save(industry);
     }
 
-    // Get all Industries
-    public List<Industry> getAllIndustries() {
-        return industryRepository.findAll();
+    @Transactional
+    public List<Industry> saveAll(List<Industry> industries) {
+        return industryRepository.saveAll(industries);
     }
 
-    // Get an Industry by ID
-    public Optional<Industry> getIndustryById(int id) {
+    public Optional<Industry> findById(int id) {
         return industryRepository.findById(id);
     }
 
-    // Update an Industry
-    public Industry updateIndustry(int id, Industry industry) {
-        if (industryRepository.existsById(id)) {
-            industry.setId(id);
-            return industryRepository.save(industry);
-        }
-        return null;
+    public List<Industry> findAll() {
+        return industryRepository.findAll();
     }
 
-    // Delete an Industry
-    public void deleteIndustry(int id) {
+    public Page<Industry> findAllWithPaging(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return industryRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public void deleteById(int id) {
         industryRepository.deleteById(id);
+    }
+
+    @Transactional
+    public Industry update(Industry industry) {
+        return industryRepository.save(industry);
     }
 }
