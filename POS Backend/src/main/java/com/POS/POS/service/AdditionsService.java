@@ -1,6 +1,6 @@
 package com.POS.POS.service;
 
-import com.POS.POS.entity.Additions;
+import com.POS.POS.entity.Addition;
 import com.POS.POS.repository.AdditionsRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,24 +18,24 @@ public class AdditionsService {
     private AdditionsRepository additionsRepository;
 
     @Transactional
-    public Additions save(Additions addition) {
+    public Addition save(Addition addition) {
         return additionsRepository.save(addition);
     }
 
     @Transactional
-    public List<Additions> saveAll(List<Additions> additions) {
+    public List<Addition> saveAll(List<Addition> additions) {
         return additionsRepository.saveAll(additions);
     }
 
-    public Optional<Additions> findById(int id) {
+    public Optional<Addition> findById(int id) {
         return additionsRepository.findById(id);
     }
 
-    public List<Additions> findAll() {
+    public List<Addition> findAll() {
         return additionsRepository.findAll();
     }
 
-    public Page<Additions> findAllWithPaging(int page, int size) {
+    public Page<Addition> findAllWithPaging(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return additionsRepository.findAll(pageable);
     }
@@ -46,7 +46,7 @@ public class AdditionsService {
     }
 
     @Transactional
-    public Additions update(Additions addition) {
+    public Addition update(Addition addition) {
         return additionsRepository.save(addition);
     }
 }

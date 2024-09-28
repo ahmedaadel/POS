@@ -20,7 +20,6 @@ public class ContactInfo {
     @Column(name = "address", length = 255)
     private String address;
 
-
     // Getters and Setters
     public int getId() {
         return id;

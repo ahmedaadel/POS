@@ -1,15 +1,16 @@
 package com.POS.POS.entity;
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "credit_type")
 public class CreditType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(nullable = false)
+    @Column(name = "type", nullable = false)
     private String type;
 
     // Getters and Setters

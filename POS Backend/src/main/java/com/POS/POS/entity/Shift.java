@@ -1,6 +1,8 @@
 package com.POS.POS.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "shift")
@@ -10,15 +12,20 @@ public class Shift {
     private int id;
 
     @Column(nullable = false)
-    private java.sql.Date shiftDate;
+    private LocalDate shiftDate;
+
     @Column(nullable = false)
-    private java.sql.Time startHour;
+    private LocalTime startHour;
+
     @Column(nullable = false)
-    private java.sql.Time endHour;
-    private int cashierId;
+    private LocalTime endHour;
+
+    private int cashierId; // Foreign key for cashier (consider using @ManyToOne)
+
     @Column(nullable = false)
     private float balance;
-    private int clientId;
+
+    private int clientId; // Foreign key for client (consider using @ManyToOne)
 
     // Getters and Setters
     public int getId() {
@@ -29,27 +36,27 @@ public class Shift {
         this.id = id;
     }
 
-    public java.sql.Date getShiftDate() {
+    public LocalDate getShiftDate() {
         return shiftDate;
     }
 
-    public void setShiftDate(java.sql.Date shiftDate) {
+    public void setShiftDate(LocalDate shiftDate) {
         this.shiftDate = shiftDate;
     }
 
-    public java.sql.Time getStartHour() {
+    public LocalTime getStartHour() {
         return startHour;
     }
 
-    public void setStartHour(java.sql.Time startHour) {
+    public void setStartHour(LocalTime startHour) {
         this.startHour = startHour;
     }
 
-    public java.sql.Time getEndHour() {
+    public LocalTime getEndHour() {
         return endHour;
     }
 
-    public void setEndHour(java.sql.Time endHour) {
+    public void setEndHour(LocalTime endHour) {
         this.endHour = endHour;
     }
 

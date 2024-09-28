@@ -7,14 +7,18 @@ import jakarta.persistence.*;
 public class ItemsPerOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(nullable = false)
+    @Column(name = "order_id", nullable = false)
     private int orderId;
-    @Column(nullable = false)
+
+    @Column(name = "menu_item_id", nullable = false)
     private int menuItemId;
+
     @Column(nullable = false)
     private int quantity;
+
     private float subtotalPrice;
     private float discountPrice;
 

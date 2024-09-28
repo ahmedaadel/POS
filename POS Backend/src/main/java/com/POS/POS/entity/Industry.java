@@ -1,4 +1,5 @@
 package com.POS.POS.entity;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -10,7 +11,7 @@ public class Industry {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name", length = 255)
+    @Column(name = "name", length = 255, nullable = false)
     private String name;
 
     @Column(name = "description", length = 255)

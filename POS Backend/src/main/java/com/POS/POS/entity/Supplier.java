@@ -11,9 +11,16 @@ public class Supplier {
 
     @Column(nullable = false)
     private String name;
+
     private String description;
-    private int contactInfoId; // Foreign key for contact_info
-    private int clientId; // Foreign key for client
+
+    @ManyToOne
+    @JoinColumn(name = "contact_info_id", nullable = false) // Adjust the foreign key column name
+    private ContactInfo contactInfo; // Assuming a ContactInfo entity exists
+
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false) // Adjust the foreign key column name
+    private Client client; // Assuming a Client entity exists
 
     // Getters and Setters
     public int getId() {
@@ -40,19 +47,19 @@ public class Supplier {
         this.description = description;
     }
 
-    public int getContactInfoId() {
-        return contactInfoId;
+    public ContactInfo getContactInfo() {
+        return contactInfo;
     }
 
-    public void setContactInfoId(int contactInfoId) {
-        this.contactInfoId = contactInfoId;
+    public void setContactInfo(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
     }
 
-    public int getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

@@ -7,14 +7,19 @@ import jakarta.persistence.*;
 public class DeliveryInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    private int deliveryBoyId;
-    @Column(nullable = false)
+    @Column(name = "delivery_boy_id", nullable = false)
+    private int deliveryBoyId; // Foreign key for delivery_boy
+
+    @Column(name = "shipping_price", nullable = false)
     private float shippingPrice;
+
     private String notes;
-    @Column(nullable = false)
-    private int customerId;
+
+    @Column(name = "customer_id", nullable = false)
+    private int customerId; // Foreign key for customer
 
     // Getters and Setters
     public int getId() {

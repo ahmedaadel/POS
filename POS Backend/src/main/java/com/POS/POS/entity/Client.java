@@ -15,11 +15,24 @@ public class Client {
     @Column(nullable = false)
     private String password;
 
-    private boolean is_active;
-    private int industry_id;
+    // Correctly mapping to "is_active" column as per your SQL code
+    @Column(name = "is_active", nullable = false)
+    private boolean isActive;
+
+    // Correctly mapping to "industry_id" column as per your SQL code
+    @Column(name = "industry_id", nullable = false)
+    private int industryId;
+
+    @Column(nullable = false)
     private String email;
-    private String phone_number;
-    private String business_name;
+
+    // Correct column mapping for "phone_number"
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    // Correct column mapping for "business_name"
+    @Column(name = "business_name")
+    private String businessName;
 
     // Getters and Setters
     public int getId() {
@@ -46,20 +59,20 @@ public class Client {
         this.password = password;
     }
 
-    public boolean isIs_active() {
-        return is_active;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setIs_active(boolean is_active) {
-        this.is_active = is_active;
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
-    public int getIndustry_id() {
-        return industry_id;
+    public int getIndustryId() {
+        return industryId;
     }
 
-    public void setIndustry_id(int industry_id) {
-        this.industry_id = industry_id;
+    public void setIndustryId(int industryId) {
+        this.industryId = industryId;
     }
 
     public String getEmail() {
@@ -70,19 +83,19 @@ public class Client {
         this.email = email;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getBusiness_name() {
-        return business_name;
+    public String getBusinessName() {
+        return businessName;
     }
 
-    public void setBusiness_name(String business_name) {
-        this.business_name = business_name;
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 }

@@ -7,12 +7,15 @@ import jakarta.persistence.*;
 public class ItemSize {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(nullable = false)
+    @Column(name = "item_id", nullable = false)
     private int itemId;
+
     @Column(nullable = false)
     private int size;
+
     @Column(nullable = false)
     private float price;
 

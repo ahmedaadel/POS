@@ -2,6 +2,7 @@ package com.POS.POS.entity;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "size")
 public class Size {
@@ -9,9 +10,11 @@ public class Size {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
     @Column(nullable = false)
     private String size;
 
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -28,4 +31,3 @@ public class Size {
         this.size = size;
     }
 }
-

@@ -1,17 +1,20 @@
 package com.POS.POS.entity;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "Additions")
-public class Additions {
+@Table(name = "Addition")
+public class Addition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String name;
 
-    private boolean price;
+    @Column(nullable = false)
+    private double price;
 
     // Getters and Setters
     public int getId() {
@@ -30,11 +33,11 @@ public class Additions {
         this.name = name;
     }
 
-    public boolean isPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(boolean price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }

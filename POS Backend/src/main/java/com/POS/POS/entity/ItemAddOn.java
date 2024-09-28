@@ -7,15 +7,19 @@ import jakarta.persistence.*;
 public class ItemAddOn {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(nullable = false)
+    @Column(name = "addition_id", nullable = false)
     private int additionId;
-    @Column(nullable = false)
+
+    @Column(name = "items_per_order_id", nullable = false)
     private int itemsPerOrderId;
-    @Column(nullable = false)
+
+    @Column(name = "additions_price", nullable = false)
     private float additionsPrice;
-    @Column(nullable = false)
+
+    @Column(name = "quantity", nullable = false)
     private int quantity;
 
     // Getters and Setters

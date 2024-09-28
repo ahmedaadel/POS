@@ -7,15 +7,16 @@ import jakarta.persistence.*;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "contact_info_id")
+    @Column(name = "contact_info_id", nullable = false)
     private int contactInfoId;
 
-    @Column(name = "client_id")
+    @Column(name = "client_id", nullable = false)
     private int clientId;
 
     // Getters and Setters

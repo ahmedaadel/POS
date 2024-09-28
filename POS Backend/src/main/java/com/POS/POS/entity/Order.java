@@ -10,28 +10,46 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private float subtotalPrice;
-    private float taxPrice;
-    @Column(nullable = false)
+    @Column(name = "subtotal_price", nullable = false)
+    private float subtotalPrice = 0; // Default value
+
+    @Column(name = "tax_price", nullable = false)
+    private float taxPrice = 0; // Default value
+
+    @Column(name = "total_price", nullable = false)
     private float totalPrice;
-    private float discountPrice;
-    private float serviceFee;
-    @Column(nullable = false)
-    private Date orderDate;
 
+    @Column(name = "discount_price", nullable = false)
+    private float discountPrice = 0; // Default value
+
+    @Column(name = "service_fee", nullable = false)
+    private float serviceFee = 0; // Default value
+
+    @Column(name = "order_date", nullable = false)
+    private Date orderDate = new Date(); // Default to current date
+
+    @Column(name = "shift_id", nullable = false)
     private int shiftId;
-    @Column(nullable = false)
-    private int orderStatus;
-    private String notes;
-    @Column(nullable = false)
-    private int type;
-    private Integer deliveryInfoId; // Nullable
-    @Column(nullable = false)
-    private boolean isDeliveryOrder;
-    @Column(nullable = false)
-    private int cashierId;
-    private int clientId;
 
+    @Column(name = "order_status", nullable = false)
+    private int orderStatus = 0; // Default value
+
+    private String notes;
+
+    @Column(name = "type", nullable = false)
+    private int type;
+
+    @Column(name = "delivery_info_id")
+    private Integer deliveryInfoId; // Nullable
+
+    @Column(name = "is_delivery_order", nullable = false)
+    private boolean isDeliveryOrder;
+
+    @Column(name = "cashier_id", nullable = false)
+    private int cashierId;
+
+    @Column(name = "client_id", nullable = false)
+    private int clientId;
     // Getters and Setters
     public int getId() {
         return id;

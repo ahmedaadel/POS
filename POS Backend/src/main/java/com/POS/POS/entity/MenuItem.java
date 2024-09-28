@@ -7,14 +7,21 @@ import jakarta.persistence.*;
 public class MenuItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(nullable = false)
+    @Column(name = "category_id", nullable = false)
     private int categoryId;
+
     @Column(nullable = false)
     private String name;
+
+    @Column(name = "is_available")
     private boolean isAvailable;
+
     private String description;
+
+    @Column(name = "client_id")
     private int clientId;
 
     // Getters and Setters

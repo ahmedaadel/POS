@@ -11,9 +11,13 @@ public class Category {
 
     @Column(nullable = false)
     private String name;
+
     private String description;
-    private int parentId;
-    @Column(nullable = false)
+
+    @Column(name = "parent_id")  // Use snake_case for consistency with database conventions
+    private Integer parentId;  // Changed to Integer to allow null values
+
+    @Column(name = "client_id", nullable = false)
     private int clientId;
 
     // Getters and Setters
@@ -41,11 +45,11 @@ public class Category {
         this.description = description;
     }
 
-    public int getParentId() {
-        return parentId;
+    public Integer getParentId() {
+        return parentId;  // Changed to Integer
     }
 
-    public void setParentId(int parentId) {
+    public void setParentId(Integer parentId) {  // Changed to Integer
         this.parentId = parentId;
     }
 

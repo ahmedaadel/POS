@@ -7,16 +7,22 @@ import jakarta.persistence.*;
 public class CreditDebit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(nullable = false)
+    @Column(name = "amount", nullable = false)
     private float amount;
-    @Column(nullable = false)
+
+    @Column(name = "type", nullable = false)
     private int type; // Foreign key for credit_type
+
+    @Column(name = "description")
     private String description;
-    @Column(nullable = false)
+
+    @Column(name = "shift_id", nullable = false)
     private int shiftId; // Foreign key for shift
-    @Column(nullable = false)
+
+    @Column(name = "client_id", nullable = false)
     private int clientId; // Foreign key for client
 
     // Getters and Setters
