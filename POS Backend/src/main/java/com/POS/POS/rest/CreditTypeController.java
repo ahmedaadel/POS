@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/credit-types")
+@RequestMapping("/api/creditTypes")
 public class CreditTypeController {
     @Autowired
     private CreditTypeService creditTypeService;

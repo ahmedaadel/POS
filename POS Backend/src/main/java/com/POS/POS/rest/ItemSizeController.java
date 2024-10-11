@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/item-size")
+@RequestMapping("/api/itemSize")
 public class ItemSizeController {
     @Autowired
     private ItemSizeService itemSizeService;

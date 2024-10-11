@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/item-add-ons")
+@RequestMapping("/api/itemAddOns")
 public class ItemAddOnController {
     @Autowired
     private ItemAddOnService itemAddOnService;

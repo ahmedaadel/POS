@@ -1,4 +1,3 @@
-Create database posdb
 use posdb;
 
 
@@ -42,7 +41,7 @@ GO
 -- Constraints Section
 
 CREATE TABLE [customer] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [name] NVARCHAR(255) not null,
   [contact_info_id] int,
   [client_id] int not null
@@ -50,7 +49,7 @@ CREATE TABLE [customer] (
 GO
 
 CREATE TABLE [client] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1) ,
   [username] NVARCHAR(255) unique not null,
   [password] NVARCHAR(255) not null,
   [is_active] BIT,
@@ -63,7 +62,7 @@ CREATE TABLE [client] (
 GO
 
 CREATE TABLE [Addition] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [name] NVARCHAR(255) not null,
   [price] BIT,
   [client_id] int not null 
@@ -71,7 +70,7 @@ CREATE TABLE [Addition] (
 GO
 
 CREATE TABLE [order] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [subtotal_price] FLOAT default 0, 
   [tax_price] FLOAT default 0,
   [total_price] FLOAT not null,
@@ -92,7 +91,7 @@ CREATE TABLE [order] (
 GO
 
 CREATE TABLE [items_per_order] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [order_id] int not null,
   [menu_item_id] int not null,
   [quantity] int  not null default 1 ,
@@ -102,7 +101,7 @@ CREATE TABLE [items_per_order] (
 GO
 
 CREATE TABLE [item_add_ons] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1) ,
   [addition_id] int NOT NULL,
   [items_per_order_id] int NOT NULL,
   [additions_price] FLOAT not null ,
@@ -113,7 +112,7 @@ CREATE TABLE [item_add_ons] (
 GO
 
 CREATE TABLE [delivery_info] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [delivery_boy_id] int,
   [shipping_price] FLOAT not null,
   [notes] NVARCHAR(MAX),
@@ -122,7 +121,7 @@ CREATE TABLE [delivery_info] (
 GO
 
 CREATE TABLE [menu_item] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [category_id] int not null,
   [name] NVARCHAR(255) not null,
   [is_available] BIT default 1,
@@ -132,7 +131,7 @@ CREATE TABLE [menu_item] (
 GO
 
 CREATE TABLE [item_size] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [item_id] int not null,
   [size] int NOT NULL,
   [price] FLOAT not null,
@@ -141,7 +140,7 @@ CREATE TABLE [item_size] (
 GO
 
 CREATE TABLE [shift] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [shift_date] DATE not null default  GETDATE() ,
   [start_hour] TIME not null,
   [end_hour] TIME not null,
@@ -152,7 +151,7 @@ CREATE TABLE [shift] (
 GO
 
 CREATE TABLE [credit_debit] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [amount] FLOAT NOT NULL,
   [type] int NOT NULL,
   [description] NVARCHAR(255) NOT NULL,
@@ -163,7 +162,7 @@ CREATE TABLE [credit_debit] (
 GO
 
 CREATE TABLE [supplier] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [name] NVARCHAR(255) NOT NULL,
   [description] NVARCHAR(255),
   [contact_info_id] int,
@@ -172,7 +171,7 @@ CREATE TABLE [supplier] (
 GO
 
 CREATE TABLE [cashier] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [name] NVARCHAR(255) NOT NULL,
   [contact_info_id] int,
   [client_id] int NOT NULL,
@@ -183,7 +182,7 @@ CREATE TABLE [cashier] (
 GO
 
 CREATE TABLE [delivery_boy] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [name] NVARCHAR(255) NOT NULL,
   [contact_info_id] int,
   [client_id] int NOT NULL,
@@ -191,7 +190,7 @@ CREATE TABLE [delivery_boy] (
 GO
 
 CREATE TABLE [contact_info] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [phone_number] NVARCHAR(255),
   [additional_number] NVARCHAR(255),
   [address] NVARCHAR(255)
@@ -199,7 +198,7 @@ CREATE TABLE [contact_info] (
 GO
 
 CREATE TABLE [category] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [name] NVARCHAR(255) NOT NULL,
   [description] NVARCHAR(MAX),
   [parent_id] int,
@@ -208,14 +207,14 @@ CREATE TABLE [category] (
 GO
 
 CREATE TABLE [industry] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [name] NVARCHAR(255) NOT NULL,
   [description] NVARCHAR(MAX)
 )
 GO
 
 CREATE TABLE [statistics] (
-  [id] int PRIMARY KEY,
+  [id] int PRIMARY KEY IDENTITY(1,1),
   [date] DATE,
   [target_per_day] FLOAT,
   [actual_balance_per_day] FLOAT,
@@ -225,46 +224,61 @@ CREATE TABLE [statistics] (
 )
 GO
 
+
 ALTER TABLE [delivery_boy] ADD FOREIGN KEY ([contact_info_id]) REFERENCES [contact_info] ([id])
+GO
+ALTER TABLE [delivery_boy] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
 GO
 
 ALTER TABLE [customer] ADD FOREIGN KEY ([contact_info_id]) REFERENCES [contact_info] ([id])
 GO
+ALTER TABLE [customer] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
+GO
 
 ALTER TABLE [cashier] ADD FOREIGN KEY ([contact_info_id]) REFERENCES [contact_info] ([id])
+GO
+ALTER TABLE [cashier] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
 GO
 
 ALTER TABLE [supplier] ADD FOREIGN KEY ([contact_info_id]) REFERENCES [contact_info] ([id])
 GO
+ALTER TABLE [supplier] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
+GO
 
 ALTER TABLE [menu_item] ADD FOREIGN KEY ([category_id]) REFERENCES [category] ([id])
+GO
+ALTER TABLE [menu_item] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
 GO
 
 ALTER TABLE [category] ADD FOREIGN KEY ([parent_id]) REFERENCES [category] ([id])
 GO
+ALTER TABLE [category] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
+GO
 
 ALTER TABLE [client] ADD FOREIGN KEY ([industry_id]) REFERENCES [industry] ([id])
 GO
-
 ALTER TABLE [delivery_info] ADD FOREIGN KEY ([customer_id]) REFERENCES [customer] ([id])
 GO
-
 ALTER TABLE [delivery_info] ADD FOREIGN KEY ([delivery_boy_id]) REFERENCES [delivery_boy] ([id])
 GO
-
 ALTER TABLE [order] ADD FOREIGN KEY ([delivery_info_id]) REFERENCES [delivery_info] ([id])
 GO
-
 ALTER TABLE [order] ADD FOREIGN KEY ([cashier_id]) REFERENCES [cashier] ([id])
+GO
+ALTER TABLE [order] ADD FOREIGN KEY ([shift_id]) REFERENCES [shift] ([id])
+GO
+ALTER TABLE [order] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
 GO
 
 ALTER TABLE [shift] ADD FOREIGN KEY ([cashier_id]) REFERENCES [cashier] ([id])
+GO
+ALTER TABLE [shift] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
 GO
 
 ALTER TABLE [credit_debit] ADD FOREIGN KEY ([shift_id]) REFERENCES [shift] ([id])
 GO
 
-ALTER TABLE [order] ADD FOREIGN KEY ([shift_id]) REFERENCES [shift] ([id])
+ALTER TABLE [credit_debit] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
 GO
 
 ALTER TABLE [items_per_order] ADD FOREIGN KEY ([order_id]) REFERENCES [order] ([id])
@@ -276,32 +290,8 @@ GO
 ALTER TABLE [item_size] ADD FOREIGN KEY ([item_id]) REFERENCES [menu_item] ([id])
 GO
 
-ALTER TABLE [customer] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
-GO
 
-ALTER TABLE [category] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
-GO
 
-ALTER TABLE [order] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
-GO
-
-ALTER TABLE [menu_item] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
-GO
-
-ALTER TABLE [supplier] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
-GO
-
-ALTER TABLE [shift] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
-GO
-
-ALTER TABLE [credit_debit] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
-GO
-
-ALTER TABLE [cashier] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
-GO
-
-ALTER TABLE [delivery_boy] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
-GO
 
 ALTER TABLE [Addition] ADD FOREIGN KEY ([client_id]) REFERENCES [client] ([id])
 GO

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/order-types")
+@RequestMapping("/api/orderTypes")
 public class OrderTypeController {
     @Autowired
     private OrderTypeService orderTypeService;
