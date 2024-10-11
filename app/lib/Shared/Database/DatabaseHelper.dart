@@ -21,7 +21,7 @@ class DatabaseHelper {
     return await openDatabase(path, version: 1, onCreate: createDB);
   }
 
-  Future createDB(Database db, int version) async h{
+  Future createDB(Database db, int version) async {
     await db.execute('PRAGMA foreign_keys = ON');
 
     await db.execute('''
