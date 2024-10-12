@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-getAPPWidth(context,figmaWidth){
+getAppWidth(context,figmaWidth){
   return (MediaQuery.of(context).size.width)*figmaWidth/360;
 }
 getAppHeight(context,figmaHeight){
