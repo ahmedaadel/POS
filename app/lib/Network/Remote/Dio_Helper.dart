@@ -1,19 +1,16 @@
 import 'package:dio/dio.dart';
 
-
 class DioHelper {
   static late Dio dio;
 
   static initDio() {
-    dio = Dio(
-      BaseOptions(
-      baseUrl:"http://192.168.1.5:8080/api/",
-      receiveDataWhenStatusError: true));
+    dio = Dio(BaseOptions(
+        baseUrl: "http://192.168.1.5:8080/api/",
+        receiveDataWhenStatusError: true));
   }
 
   static Future<Response> getApiData(
-      {required String url,
-        Map<String, dynamic>? query}) async {
+      {required String url, Map<String, dynamic>? query}) async {
     return await dio.get(url, queryParameters: query);
   }
 

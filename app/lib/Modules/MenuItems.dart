@@ -25,10 +25,10 @@ class _ItemsScreenState extends State<ItemsScreen> {
     };
 
 // Declare the categories
-Category burgersCategory = Category(id: 1, name: 'Burgers', description: 'Grilled burgers', parentCategory: null, clientId: 1);
-Category pizzasCategory = Category(id: 2, name: 'Pizzas', description: 'Wood-fired pizzas', parentCategory: null, clientId: 1);
-Category drinksCategory = Category(id: 3, name: 'Drinks', description: 'Beverages and soft drinks', parentCategory: null, clientId: 2);
-Category saladsCategory = Category(id: 4, name: 'Salads', description: 'Fresh and healthy salads', parentCategory: null, clientId: 2);
+Category burgersCategory = Category(id: 1, name: 'برجر', description: 'جريل', parentCategory: null, clientId: 1);
+Category pizzasCategory = Category(id: 2, name: 'بيتزا', description: 'بيتزا مدخنه', parentCategory: null, clientId: 1);
+Category drinksCategory = Category(id: 3, name: 'مشروبات', description: 'مشروبات ومياه عازيه', parentCategory: null, clientId: 2);
+Category saladsCategory = Category(id: 4, name: 'سلطات', description: 'سلطات صحيه طازجه', parentCategory: null, clientId: 2);
 
 // Declare the menu items
 MenuItem classicBurger = MenuItem(
@@ -83,9 +83,9 @@ MenuItem caesarSalad = MenuItem(
 
 // Declare the item sizes and assign them to the corresponding MenuItem
 classicBurger.sizes.addAll([
-  ItemSize(id: 1, menuItem: classicBurger, size: 'Small', price: 5.99),
-  ItemSize(id: 2, menuItem: classicBurger, size: 'Medium', price: 7.99),
-  ItemSize(id: 3, menuItem: classicBurger, size: 'Large', price: 9.99),
+  ItemSize(id: 1, menuItem: classicBurger, size: 'صغير', price: 5.99),
+  ItemSize(id: 2, menuItem: classicBurger, size: 'وسط', price: 7.99),
+  ItemSize(id: 3, menuItem: classicBurger, size: 'كبير', price: 9.99),
 ]);
 
 margheritaPizza.sizes.addAll([

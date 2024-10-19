@@ -16,8 +16,6 @@ Widget sizeCard(context,ItemSize itemSize){
         height: 1,
         width: double.infinity,
         color: Colors.grey,
-        
-        
       ),
       Expanded(
         child: Row(
@@ -28,7 +26,7 @@ Widget sizeCard(context,ItemSize itemSize){
              child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
                children: [
-                 DefaultText(text:  itemSize.size,font_size: getAppSize(context, 22)),
+                 DefaultText(text:itemSize.size,font_size: getAppSize(context, 18)),
                ],
              ),
            ),
@@ -38,7 +36,7 @@ Widget sizeCard(context,ItemSize itemSize){
               mainAxisAlignment: MainAxisAlignment.center,
                children: [
                  CircleAvatar(backgroundColor: Color(0xffFFEA00),
-                 radius: getAppSize(context, 35),
+                 radius: getAppSize(context, 25),
                  child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                    children: [
@@ -47,11 +45,11 @@ Widget sizeCard(context,ItemSize itemSize){
                       font_size: getAppSize(context, 16.5),
                       font: "Roboto"
                      ),
-                     DefaultText(
-                      text: "ج.م",
-                      font_size: getAppSize(context, 16.5),
-                      
-                     ),
+                     // DefaultText(
+                     //  text: "ج.م",
+                     //  font_size: getAppSize(context, 16.5),
+                     //
+                     // ),
                    ],
                  ),
                      
@@ -133,11 +131,8 @@ Widget itemCard(context, MenuItem item) {
             flex: 1,
             child: ListWheelScrollView(
               itemExtent: 80,
-
               diameterRatio: 1,
-
               clipBehavior: Clip.hardEdge, // Correct usage
-
               children: sizes,
             ),
           ),
