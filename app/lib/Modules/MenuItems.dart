@@ -30,7 +30,7 @@ Category saladsCategory = Category(id: 4, name: 'سلطات', description: 'سل
     MenuItem classicBurger = MenuItem(
       id: 1,
       category: burgersCategory,
-      name: 'Classic Burger',
+      name: 'برجر كلاسيك',
       isAvailable: true,
       description: 'وصف المنتج يمكن ان يحتوي على اي شئ',
       clientId: 1,
@@ -40,7 +40,7 @@ Category saladsCategory = Category(id: 4, name: 'سلطات', description: 'سل
     MenuItem margheritaPizza = MenuItem(
       id: 2,
       category: pizzasCategory,
-      name: 'Margherita Pizza',
+      name: 'بيتزا مارجرتا',
       isAvailable: true,
       description: 'وصف المنتج يمكن ان يحتوي على اي شئ',
       clientId: 1,
@@ -50,9 +50,9 @@ Category saladsCategory = Category(id: 4, name: 'سلطات', description: 'سل
     MenuItem colaDrink = MenuItem(
       id: 3,
       category: drinksCategory,
-      name: 'Cola',
+      name: 'كولا',
       isAvailable: true,
-      description: 'Refreshing cola drink.',
+      description: 'كولا او بيبسي او سبرايت',
       clientId: 2,
       sizes: [],
     );
@@ -60,9 +60,9 @@ Category saladsCategory = Category(id: 4, name: 'سلطات', description: 'سل
     MenuItem cheeseburger = MenuItem(
       id: 4,
       category: burgersCategory,
-      name: 'Cheeseburger',
+      name: 'تشيز برجر',
       isAvailable: false,
-      description: 'Beef burger with melted cheddar cheese and fresh veggies.',
+      description: 'تشيز برجر ب sauce الهالوبينو',
       clientId: 1,
       sizes: [],
     );
@@ -70,10 +70,10 @@ Category saladsCategory = Category(id: 4, name: 'سلطات', description: 'سل
     MenuItem caesarSalad = MenuItem(
       id: 5,
       category: saladsCategory,
-      name: 'Caesar Salad',
+      name: 'سلطة irish',
       isAvailable: true,
       description:
-          'Crisp romaine lettuce with Caesar dressing, croutons, and parmesan.',
+          'سلطة ايرلاندية بحبوب الكريسب',
       clientId: 2,
       sizes: [],
     );
@@ -143,7 +143,7 @@ classicBurger.sizes.addAll([
                 itemCard(context, menuItems[index]),
             separatorBuilder: (context, index) =>
                 Container(height: 1, width: double.infinity, color: grey_color),
-            itemCount: 2,
+            itemCount: menuItems.length,
           ),
         ),
       ),
@@ -309,8 +309,8 @@ classicBurger.sizes.addAll([
                   looping: false,
                   style: WheelPickerStyle(
                     itemExtent: getAppSize(context, 16.5) *
-                        getAppSize(context, 5.7), // Text height
-                    squeeze: getAppSize(context, 1.65),
+                        getAppSize(context, 4), // Text height
+                    squeeze: getAppSize(context, 1.2),
                     diameterRatio: 50,
                     surroundingOpacity: 1,
                   )),
@@ -321,18 +321,21 @@ classicBurger.sizes.addAll([
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircleAvatar(
-                    backgroundColor: Color(0xffD9D9D9),
-                    child: IconButton(
-                        onPressed: () {
-                          counter_map[item.id] != null
-                              ? counter_map[item.id] =
-                                  (counter_map[item.id]! + 1)
-                              : counter_map[item.id] = 1;
-
-                          setState(() {});
-                        },
-                        icon: const Icon(Icons.add))),
+                Expanded(
+                  child: CircleAvatar(
+                      backgroundColor: Color(0xffD9D9D9),
+                      radius: 20,
+                      child: IconButton(
+                          onPressed: () {
+                            counter_map[item.id] != null
+                                ? counter_map[item.id] =
+                                    (counter_map[item.id]! + 1)
+                                : counter_map[item.id] = 1;
+                  
+                            setState(() {});
+                          },
+                          icon: const Icon(Icons.add))),
+                ),
                 Expanded(
                   child: Center(
                     child: DefaultText(
@@ -340,18 +343,21 @@ classicBurger.sizes.addAll([
                         font_size: getAppSize(context, 20)),
                   ),
                 ),
-                CircleAvatar(
-                    backgroundColor: Color(0xffD9D9D9),
-                    child: IconButton(
-                        onPressed: () {
-                          counter_map[item.id] != null &&
-                                  counter_map[item.id]! - 1 >= 0
-                              ? counter_map[item.id] =
-                                  (counter_map[item.id]! - 1)
-                              : counter_map[item.id] = counter_map[item.id]!;
-                          setState(() {});
-                        },
-                        icon: const Icon(Icons.remove))),
+                Expanded(
+                  child: CircleAvatar(
+                      backgroundColor: Color(0xffD9D9D9),
+                       radius: 20,
+                      child: IconButton(
+                          onPressed: () {
+                            counter_map[item.id] != null &&
+                                    counter_map[item.id]! - 1 >= 0
+                                ? counter_map[item.id] =
+                                    (counter_map[item.id]! - 1)
+                                : counter_map[item.id] = counter_map[item.id]!;
+                            setState(() {});
+                          },
+                          icon: const Icon(Icons.remove))),
+                ),
               ],
             ),
           )
