@@ -4,7 +4,9 @@ import 'package:app/models/menu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:wheel_picker/wheel_picker.dart';
 
+// Widget designedSizeCard(context,ItemSize itemSize, myIndex, currentSelectedIndex){
 
 Widget sizeCard(context,ItemSize itemSize){
 
@@ -53,84 +55,183 @@ Widget sizeCard(context,ItemSize itemSize){
                    ],
                  ),
                      
-                 ),
-               ],
-             ),
-           )
+//                  ),
+//                ],
+//              ),
+//            )
         
-          ],
-        ),
-      ),
+//           ],
+//         ),
+//       ),
   
-      Container(
-        height: 1,
-        width: double.infinity,
-        color: Colors.grey,
+//       Container(
+//         height: 1,
+//         width: double.infinity,
+//         color: Colors.grey,
         
         
-      ),
-    ],
-  );
-}
+//       ),
+//     ],
+//   );
+// }
+// }
+// Widget sizeCard(context, ItemSize itemSize) {
+//   return Column(
+//     mainAxisAlignment: MainAxisAlignment.center,
+//     crossAxisAlignment: CrossAxisAlignment.center,
+//     children: [
+//              Container(
+//         height: 1,
+//         width: double.infinity,
+//         color: Colors.grey,
+        
+        
+//       ),
 
+//       Expanded(
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             const Expanded(
+//               child: Column(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [],
+//               ),
+//             ),
+//             Expanded(
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.center,
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   CircleAvatar(
+//                     backgroundColor: Color(0xffFFEA00),
+//                     radius: getAppSize(context, 35),
+//                     child: const Column(
+//                       mainAxisAlignment: MainAxisAlignment.center,
+//                       children: [],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             )
+//           ],
+//         ),
+//       ),
+//            Container(
+//         height: 1,
+//         width: double.infinity,
+//         color: Colors.grey,
+        
+        
+//       ),
+//     ],
+//   );
+// }
 
-Widget itemCard(context, MenuItem item) {
-  int count = 0;
-  List<Widget> sizes= [];
-  for(int i=0;i < item.sizes.length;i++){
-    sizes.add(sizeCard(context, item.sizes[i]));
-  }
+// Widget wheelItem(context, ItemSize itemSize) {
+//   return Row(
+//     mainAxisAlignment: MainAxisAlignment.center,
+//     crossAxisAlignment: CrossAxisAlignment.center,
+//     children: [
+//       DefaultText(text: itemSize.size, font_size: getAppSize(context, 22)),
+//       DefaultText(
+//           text: "${itemSize.price}",
+//           font_size: getAppSize(context, 16.5),
+//           font: "Roboto")
+//     ],
+//   );
+// }
 
+// Widget itemCard(context, MenuItem item, current_selected_size_index) {
+//   int count = 0;
 
-  return Container(
-    height: getAppHeight(context, 161),
-    width: double.infinity,
-    child: Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 1,
-           
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // holding the image
-                Container(
-                  height: getAppHeight(context, 110),
-                  width: getAppWidth(context, 110),
-                  child: Padding(
-                    padding: const EdgeInsets.all(1.0),
-                    child: SvgPicture.asset(
-                      fit: BoxFit.scaleDown,
-                      "assets/icons/burger.svg",
-                    ),
-                  ),
-                ),
+//   return Container(
+//     height: getAppHeight(context, 161),
+//     width: double.infinity,
+//     child: Padding(
+//       padding: const EdgeInsets.all(5.0),
+//       child: Row(
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Expanded(
+//             flex: 1,
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 // holding the image
+//                 Container(
+//                   height: getAppHeight(context, 110),
+//                   width: getAppWidth(context, 110),
+//                   child: Padding(
+//                     padding: const EdgeInsets.all(1.0),
+//                     child: SvgPicture.asset(
+//                       fit: BoxFit.scaleDown,
+//                       "assets/icons/burger.svg",
+//                     ),
+//                   ),
+//                 ),
 
-                DefaultText(
-                    text: item.name,
-                    font_size: getAppSize(context, 12),
-                    color: const Color(0xff000000)),
+//                 DefaultText(
+//                     text: item.name,
+//                     font_size: getAppSize(context, 12),
+//                     color: const Color(0xff000000)),
 
-                Text(
-                  item.description,
-                  style: TextStyle(
-                      fontFamily: "IBMPexl",
-                      overflow: TextOverflow.ellipsis,
-                      fontSize: getAppSize(context, 10),
-                      color: Color(0x80000000)),
-                )
-              ],
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: ListWheelScrollView(
-              itemExtent: 80,
+//                 Text(
+//                   item.description,
+//                   style: TextStyle(
+//                       fontFamily: "IBMPexl",
+//                       overflow: TextOverflow.ellipsis,
+//                       fontSize: getAppSize(context, 10),
+//                       color: Color(0x80000000)),
+//                 )
+//               ],
+//             ),
+//           ),
+//           Expanded(
+//             flex: 2,
+//             child: WheelPicker(
+//                 itemCount: item.sizes.length,
+//                 onIndexChanged: (index) {
+//                   current_selected_size_index=index;
+//                   print("selected now $current_selected_size_index");
+//                 },
+//                 builder: (context, index) =>
+//                     designedSizeCard(context, item.sizes[index],index,current_selected_size_index),
+              
+//                 looping: false,
+//                 style: WheelPickerStyle(
+//                   itemExtent: getAppSize(context, 16.5) *
+//                       getAppSize(context, 5), // Text height
+//                   squeeze: 1,
+//                   diameterRatio: 2,
+//                   surroundingOpacity: 0.25,
+//                   magnification: 1.2,
+//                 )),
+//           ),
+//           Expanded(
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 CircleAvatar(
+//                     backgroundColor: Colors.grey[400],
+//                     child: IconButton(
+//                         onPressed: () {}, icon: const Icon(Icons.add))),
+//                 DefaultText(text: "$count", font_size: getAppSize(context, 20)),
+//                 CircleAvatar(
+//                     backgroundColor: Colors.grey[400],
+//                     child: IconButton(
+//                         onPressed: () {}, icon: const Icon(Icons.remove))),
+//               ],
+//             ),
+//           )
+//         ],
+//       ),
+//     ),
+//   );
+// }
               diameterRatio: 1,
               clipBehavior: Clip.hardEdge, // Correct usage
               children: sizes,
@@ -338,13 +439,17 @@ Text DefaultText(
     {String text = "",
     Color color = Colors.black,
     String font = "IBMPlex",
-    double? font_size}) {
+    double? font_size,
+    TextStyle? style}
+    ) {
   return Text(text,
-      style: TextStyle(
+
+      style: style ?? TextStyle(
         color: color,
         fontFamily: font,
-        fontSize: font_size,
-      ));
+        fontSize: font_size
+      )
+      );
 }
 
 Widget DefaultButton({
