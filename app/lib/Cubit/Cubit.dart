@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../Network/Remote/Dio_Helper.dart';
+import '../Network/Remote/dioHelper.dart';
 import 'AppStates.dart';
 
 class AppCubit extends Cubit<AppStates>{

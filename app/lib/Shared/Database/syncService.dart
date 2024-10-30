@@ -1,8 +1,8 @@
-import 'package:app/Shared/Database/DatabaseHelper.dart';
+import 'package:app/Shared/Database/databaseHelper.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
 
-import '../../Network/Remote/Dio_Helper.dart';
+import '../../Network/Remote/dioHelper.dart';
 
 class SyncService {
   final dbHelper = DatabaseHelper.instance;

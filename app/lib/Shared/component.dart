@@ -167,22 +167,6 @@ Widget textForm({
           suffixIcon: suffixIcon),
     );
 
-Widget searchForm({
-  required TextEditingController controller,
-  required String labelText,
-  Function? onChange,
-  IconButton? suffixIcon,
-}) =>
-    TextFormField(
-      controller: controller,
-      keyboardType: TextInputType.text,
-      onChanged: (value) => onChange,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
-          labelText: labelText,
-          suffixIcon: suffixIcon),
-    );
-
 Text DefaultText(
     {String text = "",
     Color color = Colors.black,
@@ -226,38 +210,6 @@ Widget DefaultButton({
   );
 }
 
-Widget DefaultTextForm({
-  bool secure = false,
-  required Function validationFun,
-  required TextEditingController controller,
-  required String labelText,
-  required double fontsize,
-  Function? onChange,
-  Icon? prefixIcon,
-  IconButton? suffixIcon,
-  TextInputType? keyboardType,
-}) =>
-    TextFormField(
-      textAlignVertical: TextAlignVertical.bottom,
-      controller: controller,
-      validator: (value) => validationFun(value),
-      keyboardType: keyboardType,
-      onChanged: (value) => onChange,
-      obscureText: secure,
-      decoration: InputDecoration(
-          alignLabelWithHint: true,
-          enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-            color: Color(0x33000000),
-          )),
-          labelText: labelText,
-          labelStyle: TextStyle(
-            fontSize: fontsize,
-            color: Color(0x66000000),
-          ),
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon),
-    );
 
 Widget DefaultTextFormWithIcons({
   bool secure = false,
@@ -277,7 +229,7 @@ Widget DefaultTextFormWithIcons({
       onChanged: (value) => onChange,
       obscureText: secure,
       decoration: InputDecoration(
-          enabledBorder: UnderlineInputBorder(
+          enabledBorder: const UnderlineInputBorder(
               borderSide: BorderSide(
             color: Color(0x33000000),
           )),

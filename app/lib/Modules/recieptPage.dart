@@ -1,5 +1,5 @@
-import 'package:app/Modules/ItemSpecifications.dart';
-import 'package:app/Shared/Component.dart';
+import 'package:app/Modules/itemSpecifications.dart';
+import 'package:app/Shared/component.dart';
 import 'package:app/Shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

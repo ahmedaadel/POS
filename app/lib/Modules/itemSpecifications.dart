@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../Shared/Component.dart';
+import '../Shared/component.dart';
 import '../Shared/constants.dart';
 
 class ItemSpecifications extends StatefulWidget {

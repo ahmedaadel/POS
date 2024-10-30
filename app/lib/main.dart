@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'Modules/recieptPage.dart';
-import 'Network/Remote/Dio_Helper.dart';
+import 'Network/Remote/dioHelper.dart';
 
 void main() {
   DioHelper.initDio();
