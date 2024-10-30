@@ -188,16 +188,10 @@ Text DefaultText(
     Color color = Colors.black,
     String font = "IBMPlex",
     double? font_size,
-    TextStyle? style}
-    ) {
+    TextStyle? style}) {
   return Text(text,
-
-      style: style ?? TextStyle(
-        color: color,
-        fontFamily: font,
-        fontSize: font_size
-      )
-      );
+      style: style ??
+          TextStyle(color: color, fontFamily: font, fontSize: font_size));
 }
 
 Widget DefaultButton({
@@ -295,3 +289,10 @@ Widget DefaultTextFormWithIcons({
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon),
     );
+
+Widget unitWithPrice({ required String unmOfUnits,  required String unit,  required double fontSize, Color color=Colors.black,}) {
+  return Row(children: [
+    DefaultText(text:"x$unmOfUnits " , font_size: fontSize , color: color!),
+    DefaultText(text: unit, font_size: fontSize, color: color!),
+  ]);
+}

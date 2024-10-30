@@ -1,9 +1,10 @@
 import 'package:app/Cubit/AppStates.dart';
 import 'package:app/Cubit/Cubit.dart';
-import 'package:app/Modules/MenuItems.dart';
+import 'package:app/Modules/menuItems.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'Modules/recieptPage.dart';
 import 'Network/Remote/Dio_Helper.dart';
 
 void main() {
@@ -21,14 +22,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'POS',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'POS',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const ReceiptPage(),
       ),
-      home: ItemsScreen(),
     );
   }
 }

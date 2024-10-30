@@ -21,7 +21,9 @@ class ItemSpecificationsState extends State<ItemSpecifications> {
           backgroundColor: Colors.grey[400],
           title: const Text("ملخص الطلب"),
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: const Icon(Icons.arrow_back_ios_new_outlined),
           ),
         ),
@@ -79,8 +81,8 @@ class ItemSpecificationsState extends State<ItemSpecifications> {
                               children: [
                                 Row(
                                    children: [DefaultText(text: "صغير",font_size: 16 ,font: "Roboto",),
-                                     SizedBox(width: 20,),
-                                     CircleAvatar(backgroundColor: Color(0xffFFEA00),
+                                    const SizedBox(width: 20,),
+                                     CircleAvatar(backgroundColor: const Color(0xffFFEA00),
                                        radius: getAppSize(context, 20),
                                        child: DefaultText(
                                          text: "25",
