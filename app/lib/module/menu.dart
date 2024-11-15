@@ -144,7 +144,7 @@ classicBurger.sizes.addAll([
             itemBuilder: (context, index) =>
                 itemCard(context, menuItems[index]),
             separatorBuilder: (context, index) =>
-                Container(height: 1, width: double.infinity, color: grey_color),
+                Container(height: 1, width: double.infinity, color: greyColor),
             itemCount: menuItems.length,
           ),
         ),
@@ -166,7 +166,7 @@ classicBurger.sizes.addAll([
             Container(
               height: 1,
               width: double.infinity,
-              color: grey_color,
+              color: greyColor,
             ),
             Expanded(
               child: Row(
@@ -212,7 +212,7 @@ classicBurger.sizes.addAll([
                 ],
               ),
             ),
-            Container(height: 1, width: double.infinity, color: grey_color),
+            Container(height: 1, width: double.infinity, color: greyColor),
           ],
         ),
       );
@@ -283,7 +283,7 @@ classicBurger.sizes.addAll([
                         fontFamily: "IBMPlex",
                         overflow: TextOverflow.ellipsis,
                         fontSize: getAppSize(context, 11),
-                        color: grey_color),
+                        color: greyColor),
                   ),
                                
                     ],

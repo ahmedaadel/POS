@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-
-
-Color grey_color=const Color(0x80000000);
-
+Color greyColor=const Color(0x80000000);
 
 getAppWidth(context,figmaWidth){
   return (MediaQuery.of(context).size.width)*figmaWidth/360;

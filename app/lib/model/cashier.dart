@@ -8,5 +8,11 @@ class Cashier {
   String username;
   String password;
 
-  Cashier({required this.id, required this.name, required this.contactInfo, required this.clientId, required this.username, required this.password});
+  Cashier(
+      {required this.id,
+      required this.name,
+      required this.contactInfo,
+      required this.clientId,
+      required this.username,
+      required this.password});
 }
