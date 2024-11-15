@@ -1,13 +1,11 @@
-import 'package:app/Shared/default_app_widget/text.dart';
+import 'package:app/models/category.dart';
+import 'package:app/models/item_size.dart';
+import 'package:app/models/menu_item.dart';
 import 'package:flutter/material.dart';
-import 'package:app/shared/constants.dart';
+import 'package:app/Shared/constants.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wheel_picker/wheel_picker.dart';
-
-import '../model/category.dart';
-import '../model/item_size.dart';
-import '../model/menu_item.dart';
-
+import '../Shared/component.dart';
 
 class ItemsScreen extends StatefulWidget {
   const ItemsScreen({Key? key}) : super(key: key);
@@ -152,9 +150,9 @@ classicBurger.sizes.addAll([
     );
   }
 
-  Widget designedSizeCard(context, ItemSize itemSize, itemId, myIndex,
-      currentSelectedSizeIndexMap) {
-    if (current_selected_size_index_map[itemId] != myIndex) {
+  Widget designedSizeCard(context, ItemSize itemSize, item_id, myIndex,
+      current_selected_size_index_map) {
+    if (current_selected_size_index_map[item_id] != myIndex) {
       return wheelItem(context, itemSize);
     } else {
       return Container(
@@ -177,10 +175,10 @@ classicBurger.sizes.addAll([
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        defaultText(
+                        DefaultText(
                             text: itemSize.size,
                             font: "Roboto",
-                            fontSize: getAppSize(context, 23)),
+                            font_size: getAppSize(context, 23)),
                       ],
                     ),
                   ),
@@ -190,18 +188,18 @@ classicBurger.sizes.addAll([
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CircleAvatar(
-                          backgroundColor: Colors.yellow, // grey_color
+                          backgroundColor: Color(0xffFFEA00),
                           radius: getAppSize(context, 30),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              defaultText(
+                              DefaultText(
                                   text: "${itemSize.price}",
-                                  fontSize: getAppSize(context, 14.5),
+                                  font_size: getAppSize(context, 14.5),
                                   font: "Roboto"),
-                              defaultText(
+                              DefaultText(
                                 text: "ج.م",
-                                fontSize: getAppSize(context, 16.5),
+                                font_size: getAppSize(context, 16.5),
                               ),
                             ],
                           ),
@@ -229,11 +227,11 @@ classicBurger.sizes.addAll([
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
-                child: defaultText(
-                    text: itemSize.size, fontSize: getAppSize(context, 13))),
-            defaultText(
+                child: DefaultText(
+                    text: itemSize.size, font_size: getAppSize(context, 13))),
+            DefaultText(
                 text: "${itemSize.price}",
-                fontSize: getAppSize(context, 13),
+                font_size: getAppSize(context, 13),
                 font: "Roboto")
           ],
         ),
@@ -242,7 +240,7 @@ classicBurger.sizes.addAll([
   }
 
   Widget itemCard(context, MenuItem item) {
-    return SizedBox(
+    return Container(
       height: getAppHeight(context, 165),
       width: double.infinity,
       child: Row(
@@ -272,9 +270,9 @@ classicBurger.sizes.addAll([
                   padding:  EdgeInsets.symmetric(horizontal: getAppWidth(context,5)),
                   child: Column(
                     children: [
-                      defaultText(
+                      DefaultText(
                           text: item.name,
-                          fontSize: getAppSize(context, 12),
+                          font_size: getAppSize(context, 12),
                           color: const Color(0xff000000)),
                     Text(
                     item.description,
@@ -340,9 +338,9 @@ classicBurger.sizes.addAll([
                 ),
                 Expanded(
                   child: Center(
-                    child: defaultText(
+                    child: DefaultText(
                         text: "${counter_map[item.id]}",
-                        fontSize: getAppSize(context, 20)),
+                        font_size: getAppSize(context, 20)),
                   ),
                 ),
                 Expanded(

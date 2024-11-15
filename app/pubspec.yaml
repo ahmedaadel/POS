@@ -69,11 +69,13 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto-Regular.ttf
+
         
         
     - family: DMSans
       fonts:
         - asset: assets/fonts/DMSans-Regular.ttf
+
        # - asset: fonts/DMSans-Italic.ttf
         #  style: italic
         #- asset: fonts/DMSans-Bold.ttf
@@ -82,6 +84,7 @@ flutter:
     - family: IBMPlex
       fonts:
         - asset: assets/fonts/IBMPlexSansArabic-Regular.ttf
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
