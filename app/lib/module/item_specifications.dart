@@ -1,6 +1,8 @@
 import 'package:app/Shared/default_app_widget/text.dart';
+import 'package:app/shared/default_app_widget/text_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:iconly/iconly.dart';
 import '../shared/constants.dart';
 
 class ItemSpecifications extends StatefulWidget {
@@ -18,7 +20,7 @@ class ItemSpecificationsState extends State<ItemSpecifications> {
     {'title': 'اكستر جبنه شيدر', 'subtitle': '+ 20'},
     {'title': 'اكستر جبنه رومي ', 'subtitle': '+ 30'},
   ];
-
+  List<String> selectedAdditions = [];
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -104,7 +106,8 @@ class ItemSpecificationsState extends State<ItemSpecifications> {
                                         width: 20,
                                       ),
                                       CircleAvatar(
-                                        backgroundColor: const Color(0xffFFEA00),
+                                        backgroundColor:
+                                            const Color(0xffFFEA00),
                                         radius: getAppSize(context, 20),
                                         child: defaultText(
                                           text: "25",
@@ -155,17 +158,53 @@ class ItemSpecificationsState extends State<ItemSpecifications> {
                           SizedBox(
                             height: getAppSize(context, 15),
                           ),
-
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               defaultText(text: "اضافات", fontSize: 16),
-
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: selectedAdditions.length,
+                                  itemBuilder: (context, index) {
+                                    return Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Expanded(
+                                          child: TextFormField(
+                                            style:
+                                            const TextStyle(color: Colors.black),
+                                            enabled: false,
+                                            initialValue:  selectedAdditions[index],
+                                            decoration: const InputDecoration(
+                                                disabledBorder:
+                                                 UnderlineInputBorder(
+                                                  borderSide:
+                                                  BorderSide(color: Colors.black),
+                                                ),
+                                                ),
+                                          ),
+                                        ),
+                                        IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              selectedAdditions.remove(
+                                                  selectedAdditions[index]);
+                                            });
+                                          },
+                                          icon: const Icon(Icons.close),
+                                          color: Colors.red,
+                                        )
+                                      ],
+                                    );
+                                  }),
+                              const SizedBox(
+                                height: 15,
+                              ),
                               DropdownButtonHideUnderline(
                                 child: DropdownButton<String>(
                                   value: selectedValue,
                                   isExpanded: true,
-                                  dropdownColor: greyColor,
+                                  dropdownColor: Colors.grey[300],
                                   items: dropdownItems.map((item) {
                                     return DropdownMenuItem<String>(
                                       value: item['title'],
@@ -188,11 +227,15 @@ class ItemSpecificationsState extends State<ItemSpecifications> {
                                   onChanged: (value) {
                                     setState(() {
                                       selectedValue = value;
+                                      selectedAdditions.add(selectedValue!);
                                     });
                                   },
                                   icon: const Icon(Icons.arrow_drop_down),
-                                  underline:
-                                      const SizedBox(), // To remove the underline
+                                  underline: Expanded(
+                                    child: const SizedBox(
+                                      height: 5,
+                                    ),
+                                  ), // To remove the underline
                                 ),
                               ),
                             ],
