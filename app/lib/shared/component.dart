@@ -1,6 +1,4 @@
 import 'package:app/Shared/constants.dart';
-import 'package:app/models/item_size.dart';
-import 'package:app/models/menu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
